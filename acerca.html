@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio 1</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+      
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ff6600;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            width: 110px;
+            height: auto;
+        }
+
+     
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            height: 100%;
+            width: 250px;
+            background-color: #ff6600;
+            color: #fff;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu ul li {
+            padding: 15px 0;
+            border-bottom: 1px solid #575757;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .menu ul li a:hover {
+            color: #ff6600;
+            background-color: #333;
+        }
+
+       
+        .menu-icon {
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          margin-left: auto;
+      }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-icon div {
+            background-color: #ffffff;
+            height: 4px;
+            width: 30px;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+        }
+
+       
+        .menu.active {
+            right: 0;
+        }
+
+      
+        main {
+            padding: 100px 20px 40px;
+            background-color: #f9f9f9;
+        }
+
+   
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            color: #555;
+        }
+
+        article h2 {
+            font-size: 2em;
+            color: #ff6600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        article p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ff6600;
+        }
+
+       
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <a href="index.html" id="logo">
+            <img src="https://static.vecteezy.com/system/resources/previews/011/424/959/non_2x/wooden-toy-store-illustration-logo-vector.jpg" alt="Logo Juguetería TOYSTORE">
+        </a>
+
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    
+    <div class="menu">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="acerca.html" class="active">Acerca</a></li>
+                <li><a href="productos.html">Tienda</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
+   
+    <main>
+        <article>
+            <h2>Acerca de Nosotros</h2>
+            <p>Érase una vez, en el barrio de Buceo en Montevideo, dos amigos llamados Agustín y Gaspar. Desde pequeños, compartían una pasión por los juguetes y la creatividad. Juntos, pasaban horas creando sus propios juguetes con materiales reciclados, soñando con algún día tener su propia tienda. Cuando llegaron a la adultez, decidieron que era el momento de hacer realidad ese sueño y fundaron *TOYSTORE*, una tienda única en el barrio.
+
+                *TOYSTORE* no era una tienda común de juguetes. Agustín y Gaspar querían ofrecer algo diferente: juguetes artesanales, ecológicos y hechos con mucho amor...
+
+                Hoy, *TOYSTORE* sigue siendo un lugar especial en Buceo, donde cada juguete tiene una historia y cada cliente se siente parte de algo más grande. La tienda es un testimonio de cómo dos amigos con un sueño y mucha pasión pueden transformar su comunidad y dejar una huella duradera.
+            </p>
+        </article>
+    </main>
+
+    
+    <footer>
+        &copy; 2023 TOYSTORE - Todos los derechos reservados.
+    </footer>
+
+   
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
+
+

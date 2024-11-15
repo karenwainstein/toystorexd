@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+     body {
+          font-family: 'Roboto', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f8f9fa;
+      }
+
+      header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ff6600;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            width: 110px;
+            height: auto;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ff6600;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .menu a {
+            color: #fffbfb;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            background-color: #ffffff;
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .menu-icon div {
+            background-color: #ffffff;
+            height: 4px;
+            width: 30px;
+            margin: 5px 0;
+        }
+
+        .menu ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            top: 0;
+            right: -250px;
+          left: auto;
+            height: 100%;
+            background-color: #ff6600;
+            z-index: 1;
+            flex-direction: column;
+            transition: left 0.3s ease;
+        }
+
+        .menu.active ul {
+            right: 0;
+        }
+
+        .menu ul li {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #575757;
+        }
+
+        .menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+        article {
+            background: #ff6600;
+            padding: 24px;
+            text-align: center;
+            border-radius: 6px;
+            hyphens: auto;
+        }
+
+        article h2 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        article p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-container h3 {
+            color: #ff6600;
+        }
+
+        .form-container label {
+            font-size: 16px;
+            color: #ff6600;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-container input[type="text"], .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #ff6600;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #e65c00;
+        }
+
+        .thank-you-message {
+            display: none;
+            background-color: #006627;
+            color: #4caf50;
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" id="logo">
+                <img src="https://static.vecteezy.com/system/resources/previews/011/424/959/non_2x/wooden-toy-store-illustration-logo-vector.jpg" alt="Logo Juguetería TOYSTORE">
+            </a>
+
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="acerca.html">Acerca</a></li>
+                        <li><a href="productos.html">Tienda</a></li>
+                        <li><a href="contacto.html" class="active">Contacto</a></li>
+                    </ul>
+                </nav>
+
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+  <h1></h1>
+  <h1></h1>
+  <h1></h1>
+  <h1></h1>
+  <h1></h1>
+    <main>
+        
+        <section class="container">
+            <article>
+                <h2>Contactanos</h2>
+                <p>
+                    <br>Correo electronico: toystore@gmail.com 
+                    <br>Telefono: 093 642 099
+                    <br>Horario de Atencion: De Lunes a Viernes de 7:30-19:30
+                    <br>Horario de Atencion: Sábado y Domingo de 10:30-18:30
+                </p>
+            </article>
+        </section>
+
+        <section class="colums container">
+            <article>
+                <h2>Estamos aquí</h2>
+                <p>
+                    <a href="https://maps.app.goo.gl/yNdXHrbDZvkLgeqy7"><img style="width: 100%; max-width: 500px; height: auto;" src="https://www.google.com/maps/vt/data=WxY9XkYvvQdSnSNDUuvIeO_UUOhaqY8rE9BiqROuSt5C5Z-YT0VxU3g8ZBdfQJkuW2ysUlRm9BIq6WIS21FdSfU8XNvhWPSe0OS5O37WrwRk9WHgS5mc5YPVTYP8tFCJywCRnzcTFTpMvEqFLWd_4FqBebecRnVWcF40wNTsS6pO6SO08I07GGODDeDOlhpHcp9j1BbSeS9ZrsjSbH9srbdiUn0" alt=""></a>
+                </p>
+            </article>
+
+            <article>
+                <h2>Comentarios</h2>
+                <p>Nos gustaría saber tu opinión. ¿Te gustó nuestra tienda?</p>
+                <div class="form-container">
+                    <h3>Envíanos tus comentarios</h3>
+                    <form id="comentariosForm" onsubmit="return enviarComentario(event)">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        
+                        <label for="comentario">Tu comentario:</label>
+                        <textarea id="comentario" name="comentario" rows="4" required></textarea>
+                        
+                        <label for="opinion">¿Te gustó la tienda?</label>
+                        <select id="opinion" name="opinion" required>
+                            <option value="Si">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                        
+                        <input type="submit" value="Enviar comentario">
+                    </form>
+                </div>
+                <div id="thank-you" class="thank-you-message">
+                    <p>¡Muchas gracias por tus comentarios!</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+
+        function enviarComentario(event) {
+            event.preventDefault(); 
+
+       
+            document.getElementById('comentariosForm').style.display = 'none';
+
+         
+            document.getElementById('thank-you').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

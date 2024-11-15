@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juguetería ToyStore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+   <style>
+      body {
+          font-family: 'Roboto', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f8f9fa;
+      }
+      header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ff6600;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            width: 110px;
+            height: auto;
+        }
+
+
+      .menu {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #ff6600;
+          padding: 15px 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          position: relative;
+          
+      }
+
+      .menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 10px 15px;
+          font-size: 18px;
+          border-radius: 4px;
+          transition: background-color 0.3s ease;
+      }
+
+      .menu a:hover {
+          background-color: #575757;
+      }
+
+      .menu-icon {
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          margin-left: auto;
+      }
+
+      .menu-icon div {
+          background-color: #ffffff;
+          height: 4px;
+          width: 30px;
+          margin: 5px 0;
+      }
+
+      .menu ul {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          position: fixed;
+          top: 0;
+          right: -250px;
+          left: auto;
+          height: 100%;
+          background-color: #ff6600;
+          z-index: 1;
+          flex-direction: column;
+          transition: left 0.3s ease;
+      }
+
+      .menu.active ul {
+          right: 0;
+      }
+
+      .menu ul li {
+          padding: 20px;
+          text-align: center;
+          border-bottom: 1px solid #ff6600;
+      }
+
+      .menu ul li:last-child {
+          border-bottom: none;
+      }
+      
+   h1 {
+          text-align: center;
+          color: #333;
+          font-size: 36px;
+          margin-top: 20px;
+          text-shadow: 1px 1px 2px #ccc;
+      }
+
+      h2 {
+          text-align: center;
+          color: #464343;
+          margin-top: 40px;
+          font-size: 28px;
+      }
+      .section-title {
+          text-align: center;
+          font-size: 28px;
+          margin-top: 40px;
+          color: #ff6600;
+          text-transform: uppercase;
+      }
+
+      .grid-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 20px;
+      }
+
+      .grid-item {
+          width: calc(33.33% - 20px);
+          margin: 10px;
+          text-align: center;
+          border: 1px solid #dddddd;
+          padding: 20px;
+          box-sizing: border-box;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+      }
+
+      .grid-item:hover {
+          transform: scale(1.05);
+      }
+
+      .grid-item img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+          margin-bottom: 15px;
+      }
+
+      .cart {
+    position: fixed;
+    top: 60px; 
+    right: -300px;
+    width: 300px;
+    height: calc(80% - 60px); 
+    background-color: rgba(158, 64, 2, 0.9); 
+    color: #fff;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 1100;
+    overflow-y: auto;
+    border-radius: 8px 0 0 8px;
+}
+
+
+      .cart.active {
+          right: 0;
+      }
+
+      .cart h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 24px;
+          color: #ffffff;
+      }
+
+      .cart ul {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 20px;
+      }
+
+      .cart ul li {
+          padding: 10px;
+          border-bottom: 1px solid #575757;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .cart ul li:last-child {
+          border-bottom: none;
+      }
+
+      .cart .cart-close {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          cursor: pointer;
+          color: #fffdfd;
+      }
+
+      .cart-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #28a745;
+          color: white;
+          padding: 15px;
+          border-radius: 50%;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transition: background-color 0.3s ease;
+      }
+
+      .cart-button:hover {
+          background-color: #218838;
+      }
+    
+@media (max-width: 600px) {
+    .grid-item {
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .grid-item {
+        width: 48%; 
+    }
+}
+
+      .add-to-cart {
+          background-color: #007bff;
+          color: white;
+          padding: 10px;
+          margin-top: 10px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+          background-color: #0056b3;
+      }
+
+      .pay-button {
+          width: 100%;
+          padding: 10px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          margin-top: 20px;
+          border-radius: 5px;
+      }
+
+      .pay-button:hover {
+          background-color: #218838;
+      }
+
+      .remove-item {
+          background-color: #ff4d4d;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          font-size: 12px;
+          border-radius: 3px;
+      }
+
+      .remove-item:hover {
+          background-color: #cc0000;
+      }
+
+      @media (max-width: 768px) {
+          .menu {
+              flex-direction: column;
+          }
+
+          .menu a {
+              font-size: 14px;
+              padding: 8px;
+          }
+
+          .grid-container {
+              flex-direction: column;
+              align-items: center;
+          }
+
+          .grid-item {
+              width: 80%;
+              margin: 10px 0;
+          }
+
+          .cart {
+              width: 100%;
+              top: auto;
+              bottom: 0;
+              height: 60%;
+              border-radius: 10px 10px 0 0;
+          }
+
+          .cart-button {
+              bottom: 80px;
+          }
+
+          .add-to-cart {
+              padding: 8px;
+              font-size: 14px;
+          }
+
+          .pay-button {
+              font-size: 16px;
+          }
+
+          .remove-item {
+              padding: 5px;
+              font-size: 10px;
+          }
+      }
+
+      @media (max-width: 480px) {
+          .section-title {
+              font-size: 20px;
+          }
+
+          .grid-item {
+              width: 90%;
+          }
+
+          .grid-container {
+              padding: 10px;
+          }
+
+          .menu a {
+              font-size: 12px;
+          }
+
+          .cart-button {
+              bottom: 20px;
+          }
+
+          .pay-button {
+              font-size: 14px;
+          }
+      }
+
+  </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" id="logo">
+                <img src="https://static.vecteezy.com/system/resources/previews/011/424/959/non_2x/wooden-toy-store-illustration-logo-vector.jpg" alt="Logo Juguetería TOYSTORE">
+            </a>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="acerca.html">Acerca</a></li>
+                        <li><a href="productos.html" class="active">Tienda</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <main>
+            <h1></h1>
+            <h1></h1>
+            <h1></h1>
+
+        
+                <h2 id="juguetes-bebes" class="section-title">Juguetes para Bebés</h2>
+                <div class="grid-container">
+                    
+                    <div class="grid-item">
+                        <img src="https://f.fcdn.app/imgs/e0a6ab/www.elclon.com.uy/clonuy/745d/original/catalogo/800859-1/460_460/sonajero-sonajero.jpg" alt="Sonajero">
+                        <h3>Sonajero</h3>
+                        <p>$150</p>
+                        <button class="add-to-cart" onclick="addToCart('Sonajero', 150)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://pbs.twimg.com/profile_images/985323339454537730/08BF1E_R_400x400.jpg" alt="Peluche">
+                        <h3>Peluche</h3>
+                        <p>$300</p>
+                        <button class="add-to-cart" onclick="addToCart('Peluche', 300)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_841244-MLC47717992276_092021-O.webp" alt="Juguete de Baño">
+                        <h3>Juguete de Baño</h3>
+                        <p>$200</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete de Baño', 200)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_851860-MLU70954236087_082023-O.webp" alt="Juguete Musical">
+                        <h3>Juguete Musical</h3>
+                        <p>$350</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete Musical', 350)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_878070-MLU52717503133_122022-O.webp" alt="Granja Juguete">
+                        <h3>Granja Juguete</h3>
+                        <p>$220</p>
+                        <button class="add-to-cart" onclick="addToCart('Granja Juguete', 220)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4XDoB5piTO31tWaS4KvjBdQNVMtzWw7kw_Q&s" alt="Set de Juguetes">
+                        <h3>Set de Juguetes</h3>
+                        <p>$450</p>
+                        <button class="add-to-cart" onclick="addToCart('Set de Juguetes', 450)">Agregar al carrito</button>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_935200-MLU45738952758_042021-O.webp" alt="Sonajero Arcoíris">
+                        <h3>Sonajero Arcoíris</h3>
+                        <p>$180</p>
+                        <button class="add-to-cart" onclick="addToCart('Sonajero Arcoíris', 180)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_749926-MLU70889981455_082023-O.webp" alt="Juguete Musical con Luces">
+                        <h3>Juguete Musical con Luces</h3>
+                        <p>$350</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete Musical con Luces', 350)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_901324-MLU72620808971_112023-O.webp" alt="Peluche de Conejo">
+                        <h3>Peluche de Pitbull</h3>
+                        <p>$320</p>
+                        <button class="add-to-cart" onclick="addToCart('Peluche de Conejo', 320)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_621361-MLU72455786376_102023-O.webp" alt="Juguete de Baño Patito">
+                        <h3>Juguete de Baño Patito</h3>
+                        <p>$180</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete de Baño Patito', 180)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_864797-MLU69912493706_062023-O.webp" alt="Juguete Suave">
+                        <h3>Juguete Suave</h3>
+                        <p>$270</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete Suave', 270)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://f.fcdn.app/imgs/76da09/www.hastaterminarstock.com.uy/htsuy/78ac/original/catalogo/9805_Azul_1/460x460/mordillo-marine-evenflo-mordedor-3en1-refrigerable-para-bebe-azul.jpg" alt="Mordedor">
+                        <h3>Mordedor</h3>
+                        <p>$120</p>
+                        <button class="add-to-cart" onclick="addToCart('Mordedor', 120)">Agregar al carrito</button>
+                    </div>
+                </div>
+            
+                <h2 id="juguetes-ninos" class="section-title">Juguetes para Niños</h2>
+                <div class="grid-container">
+            
+                    <div class="grid-item">
+                        <img src="https://f.fcdn.app/imgs/dc14c7/electroventas.com.uy/elecuy/1506/original/catalogo/DID1182_DID1182_1/1920-1200/auto-de-juguete-elka-rayo-mcqueen-de-cars-auto-de-juguete-elka-rayo-mcqueen-de-cars.jpg" alt="Auto de Juguete">
+                        <h3>Auto de Juguete</h3>
+                        <p>$500</p>
+                        <button class="add-to-cart" onclick="addToCart('Auto de Juguete', 500)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDr1BcVLUidZyJRQgBVlQdQ9X6yOtPGrt_A&s" alt="Tren Eléctrico">
+                        <h3>Tren Eléctrico</h3>
+                        <p>$650</p>
+                        <button class="add-to-cart" onclick="addToCart('Tren Eléctrico', 650)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_714930-MLA48696753342_122021-O.webp" alt="Puzzle Dinosaurios">
+                        <h3>Puzzle Dinosaurios</h3>
+                        <p>$120</p>
+                        <button class="add-to-cart" onclick="addToCart('Puzzle Dinosaurios', 120)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_861147-MLU71135347435_082023-O.webp" alt="Lego Ninjago">
+                        <h3>Lego Ninjago</h3>
+                        <p>$800</p>
+                        <button class="add-to-cart" onclick="addToCart('Lego Ninjago', 800)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://www.tushop.uy/imgs/productos/productos34_11609.jpg" alt="Bloques de Construcción">
+                        <h3>Bloques de Construcción</h3>
+                        <p>$300</p>
+                        <button class="add-to-cart" onclick="addToCart('Bloques de Construcción', 300)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://f.fcdn.app/imgs/ab7c1d/www.queregalo.uy/qreguy/6ac1/original/catalogo/C3E1AP_C3E1AP_1/1500-1500/coche-de-juguete-3-en-1-american-plastic-coche-de-juguete-3-en-1-american-plastic.jpg" alt="Coche de Juguete">
+                        <h3>Coche de Juguete</h3>
+                        <p>$400</p>
+                        <button class="add-to-cart" onclick="addToCart('Coche de Juguete', 400)">Agregar al carrito</button>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_703141-MLU78181813274_082024-O.webp" alt="Auto de Carreras">
+                        <h3>Auto de Carreras</h3>
+                        <p>$600</p>
+                        <button class="add-to-cart" onclick="addToCart('Auto de Carreras', 600)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_686971-CBT79635550941_092024-O.webp" alt="Figura de Acción">
+                        <h3>Figura de Acción</h3>
+                        <p>$450</p>
+                        <button class="add-to-cart" onclick="addToCart('Figura de Acción', 450)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://www.mosca.com.uy/media/catalog/product/4/8/4853382.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700" alt="Puzzle 3D">
+                        <h3>Puzzle 3D</h3>
+                        <p>$350</p>
+                        <button class="add-to-cart" onclick="addToCart('Puzzle 3D', 350)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDl5HOjdAjkI4Cig2XIQH2gTBPSs_RlpJGUw&s" alt="Pista de Carreras Eléctrica">
+                        <h3>Pista de Carreras Eléctrica</h3>
+                        <p>$1000</p>
+                        <button class="add-to-cart" onclick="addToCart('Pista de Carreras Eléctrica', 1000)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_621726-MLU70113097291_062023-O.webp" alt="Juego de Mesa">
+                        <h3>Juego de Mesa</h3>
+                        <p>$500</p>
+                        <button class="add-to-cart" onclick="addToCart('Juego de Mesa', 500)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqforKqLdp0Kl7wyetoAVD51ljOqFhPthf1A&s" alt="Figura Dinosaurio">
+                        <h3>Figura Dinosaurio</h3>
+                        <p>$250</p>
+                        <button class="add-to-cart" onclick="addToCart('Figura Dinosaurio', 250)">Agregar al carrito</button>
+                    </div>
+                </div>
+            
+                <h2 id="juguetes-adolescentes" class="section-title">Juguetes para Adolescentes</h2>
+                <div class="grid-container">
+                  
+                    <div class="grid-item">
+                        <img src="https://i.ytimg.com/vi/iELL8o37pSU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAB-OnQpHj24z-7y9ToYGD1gZlF3g" alt="Videojuego">
+                        <h3>Videojuego</h3>
+                        <p>$1200</p>
+                        <button class="add-to-cart" onclick="addToCart('Videojuego', 1200)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://m.media-amazon.com/images/I/616j1R6xxLL.jpg" alt="Control de Videojuego">
+                        <h3>Control de Videojuego</h3>
+                        <p>$4350</p>
+                        <button class="add-to-cart" onclick="addToCart('Control de Videojuego', 350)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://lacasadelplay.com.co/cdn/shop/files/IM6ProductoControlSP4OriginalLaCasadelPlay.jpg?v=1699719419" alt="Mando PlayStation">
+                        <h3>Mando PlayStation</h3>
+                        <p>$2500</p>
+                        <button class="add-to-cart" onclick="addToCart('Mando PlayStation', 500)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_624829-MLU77839954999_072024-O.webp" alt="Drone">
+                        <h3>Drone</h3>
+                        <p>$1500</p>
+                        <button class="add-to-cart" onclick="addToCart('Drone', 1500)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf7o3J1sCAoqPvR6pwOp8MsvgAu0cPE1bXtg&s" alt="Juguete Pista de Carreras">
+                        <h3>Pista de Carreras</h3>
+                        <p>$1300</p>
+                        <button class="add-to-cart" onclick="addToCart('Pista de Carreras', 400)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://m.media-amazon.com/images/I/81liVlseWtL.jpg" alt="Set de Modelismo">
+                        <h3>Set de Modelismo</h3>
+                        <p>$850</p>
+                        <button class="add-to-cart" onclick="addToCart('Set de Modelismo', 850)">Agregar al carrito</button>
+                    </div>
+                   
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxNlE1b_ldFKs1Y6iPUd6puMrwY8Y3zmUwZA&s" alt="Juego de Realidad Virtual">
+                        <h3>Juego de Realidad Virtual</h3>
+                        <p>$2500</p>
+                        <button class="add-to-cart" onclick="addToCart('Juego de Realidad Virtual', 2500)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://cdnx.jumpseller.com/chirag-ltda/image/38130835/resize/700/700?1690761627" alt="Control Xbox">
+                        <h3>Control Xbox</h3>
+                        <p>$1800</p>
+                        <button class="add-to-cart" onclick="addToCart('Control Xbox', 1800)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://m.media-amazon.com/images/I/61ksrJ2LsgL._AC_UF894,1000_QL80_.jpg" alt="Smartwatch para Joven">
+                        <h3>Smartwatch para Joven</h3>
+                        <p>$2000</p>
+                        <button class="add-to-cart" onclick="addToCart('Smartwatch para Joven', 2000)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO4P3l16oP3HgUsKSoLOYl174hFuUufsLWgg&s" alt="Juguete Volador">
+                        <h3>Juguete Volador</h3>
+                        <p>$1250</p>
+                        <button class="add-to-cart" onclick="addToCart('Juguete Volador', 350)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://www.mosca.com.uy/media/catalog/product/4/8/4821628.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700" alt="Robot Programable">
+                        <h3>Robot Programable</h3>
+                        <p>$900</p>
+                        <button class="add-to-cart" onclick="addToCart('Robot Programable', 900)">Agregar al carrito</button>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYv42JKHYynnmy_hTaWeaEmQQMkHqBUXJReQ&s" alt="Juego de Estrategia">
+                        <h3>Juego de Estrategia</h3>
+                        <p>$450</p>
+                        <button class="add-to-cart" onclick="addToCart('Juego de Estrategia', 450)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </main>
+        
+
+    </main>
+<div class="cart" id="cart">
+        <h2>Mi Carrito</h2>
+        <ul id="cart-items"></ul>
+        <button class="pay-button" onclick="checkout()">Pagar</button>
+        <div class="cart-close" onclick="toggleCart()">X</div>
+    </div>
+
+
+    <button class="cart-button" onclick="toggleCart()">🛒</button>
+
+
+
+    <footer>
+    </footer>
+
+    <script>
+        let cart = [];
+
+
+        function toggleMenu() {
+            document.querySelector('.menu').classList.toggle('active');
+        }
+
+
+        function toggleCart() {
+            document.getElementById('cart').classList.toggle('active');
+        }
+
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item.product} - $${item.price} <button class="remove-item" onclick="removeFromCart('${item.product}')">Eliminar</button>`;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+            const totalLi = document.createElement('li');
+            totalLi.innerHTML = `<strong>Total: $${total}</strong>`;
+            cartItems.appendChild(totalLi);
+        }
+
+
+        function removeFromCart(product) {
+            cart = cart.filter(item => item.product !== product);
+            updateCart();
+        }
+
+
+        function checkout() {
+            alert('Gracias por tu compra!');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
+
+
